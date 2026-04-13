@@ -1,15 +1,40 @@
-# Kubernetes Journey 2026
+# \# Platform Engineering Notes
 
-Structured preparation for:
+# 
 
-- KCNA (Kubernetes and Cloud Native Associate)
-- CKA (Certified Kubernetes Administrator)
+# Learning notes, concept breakdowns, and interview prep for my 
 
-Focus Areas:
-- Kubernetes fundamentals
-- AKS production insights
-- Troubleshooting playbooks
-- Terraform (Azure baseline)
+# Platform Engineering transition.
 
-All notes are written in my own words and aligned with official Kubernetes documentation.# Kubernetes-journey-2026
-Structured KCNA → CKA preparation with hands-on labs, notes, and AKS-focused production insights.
+# 
+
+# \## Certification Path
+
+# KCNA → CKA → Terraform Associate
+
+# 
+
+# \## What's Inside
+
+# \- `containers/` — Docker, container fundamentals
+
+# \- `kubernetes/` — K8s architecture, objects, hands-on
+
+# \- `linux/` — Linux fundamentals, commands, scripting
+
+# \- `terraform/` — IaC, HCL, Azure projects
+
+# \- `interview-prep/` — 3-layer answers, MCQs, flashcards
+
+# 
+
+# \## About
+
+# 3.4 years Azure Infra + SRE background. Production Kubernetes 
+
+# experience. Transitioning fully into Platform Engineering.
+
+# 
+
+# All notes written in my own words. Updated daily.
+
