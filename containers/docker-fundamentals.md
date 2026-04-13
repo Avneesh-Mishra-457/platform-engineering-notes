@@ -17,27 +17,38 @@ Put least-changing instructions at the TOP, most-changing at the BOTTOM.
 
 ```dockerfile
 FROM python:3.11
-COPY requirements.txt .          # changes rarely → cached
-RUN pip install -r requirements.txt  # cached until deps change
-COPY . /app                      # code changes often → last
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . /app
 ```
 
 ## Key Dockerfile Instructions
 | Instruction | Purpose |
 |---|---|
 | FROM | Base image |
-| RUN | Execute command during build (creates a layer) |
+| RUN | Execute command during build |
 | COPY | Copy files from host into image |
-| WORKDIR | Set working directory inside container |
+| WORKDIR | Set working directory |
 | ENV | Set environment variables |
-| EXPOSE | Document which port app uses (informational) |
-| CMD | Default command at container start (overridable) |
+| EXPOSE | Document port (informational) |
+| CMD | Default command at start (overridable) |
 | ENTRYPOINT | Fixed command — CMD becomes its arguments |
 
 ## Interview Answer
-A Docker image is a stack of immutable, content-addressed layers. Each layer is identified by a SHA256 hash — unchanged layers are reused from cache. In production we push to ACR and AKS pulls only the changed layers, not the full image each time.
+A Docker image is a stack of immutable content-addressed layers. Each layer identified by SHA256 hash — unchanged layers reused from cache. In production we push to ACR and AKS pulls only changed layers.
 
-## Production Context (Azure)
-- Build locally → tag → az acr login → docker push to ACR
-- AKS pulls from ACR layer by layer — only diff is transferred
-- Containers are ephemeral — stateful data must live in Persistent Volumes
+## Quick Revision (Flashcards)
+Q: What two kernel features give containers isolation and resource limits?
+A: Namespaces (isolation) and cgroups (resource limits)
+
+Q: What is a Docker image?
+A: A read-only stack of immutable layers built from a Dockerfile
+
+Q: What is a container?
+A: A running instance of an image with a thin writable layer on top
+
+Q: Why does layer order in Dockerfile matter?
+A: Docker caches layers — least-changing at top means faster rebuilds
+
+Q: What does SHA256 do for Docker layers?
+A: Identifies each layer by content hash — same content = cached, changed content = rebuild
